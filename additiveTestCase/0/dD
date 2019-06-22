@@ -1,0 +1,48 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      dD;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    floor
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    ceiling
+    {
+       // type            zeroGradient;
+        type            incrementTractionDisplacement;
+        incrementTraction uniform ( 0 0 0 );
+        incrementPressure uniform 0;
+        value           uniform (0 0 0);
+    }
+    fixedWalls
+    {
+	//type            zeroGradient;
+        type            incrementTractionDisplacement;
+        incrementTraction uniform ( 0 0 0 );
+        incrementPressure uniform 0;
+        value           uniform (0 0 0);
+    }
+}
+
+
+// ************************************************************************* //
